@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.doan.tuvantuyensinh.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_news"
+            app:destination="@id/navigation_news" />
+        <action
+            android:id="@+id/action_navigation_home_to_undevelopFragment"
+            app:destination="@id/undevelopFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.doan.tuvantuyensinh.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.doan.tuvantuyensinh.ui.news.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_navigation_news_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_school_info"
+        android:name="com.doan.tuvantuyensinh.ui.school.SchoolInfoFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.doan.tuvantuyensinh.ui.news.NewsDetailFragment"
+        android:label="News Detail Fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/undevelopFragment"
+        android:name="com.doan.tuvantuyensinh.ui.underdevelop.UnDevelopFragment"
+        android:label="Undevelop Fragment">
+    </fragment>
+</navigation>

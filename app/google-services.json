@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "125610004432",
+    "project_id": "tuvantuyensinhptit-cd8fa",
+    "storage_bucket": "tuvantuyensinhptit-cd8fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125610004432:android:d81b514a0c48dde51333d5",
+        "android_client_info": {
+          "package_name": "com.doan.tuvantuyensinh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFl5wesx-1PQbC9xsZcCtI4paMbiHtoxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125610004432:android:f21d838e24399a471333d5",
+        "android_client_info": {
+          "package_name": "com.ptit.tuvanptit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFl5wesx-1PQbC9xsZcCtI4paMbiHtoxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
