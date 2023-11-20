@@ -1,5 +1,6 @@
 package com.doan.tuvantuyensinh.di
 
+import com.doan.tuvantuyensinh.data.remote.ChatBotService
 import com.google.gson.Gson
 import com.doan.tuvantuyensinh.data.remote.SchoolService
 import com.doan.tuvantuyensinh.utils.remote.CallAdapterFactory
@@ -49,7 +50,7 @@ object RemoteModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("http://192.168.1.27:5001/")
+        .baseUrl("http://192.168.1.29:5001/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CallAdapterFactory())
         .build()
@@ -57,4 +58,8 @@ object RemoteModule {
     @Singleton
     @Provides
     fun provideSChoolService(retrofit: Retrofit) = retrofit.create(SchoolService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideChatBotService(retrofit: Retrofit) = retrofit.create(ChatBotService::class.java)
 }

@@ -17,7 +17,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_titleFunction_home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/function_home"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carousel_pager"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvFunctionsHome"
@@ -26,7 +30,7 @@
             android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carousel_pager"
+            app:layout_constraintTop_toBottomOf="@id/tv_titleFunction_home"
             />
 
         <com.asksira.loopingviewpager.LoopingViewPager
@@ -41,5 +45,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabChatBot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:importantForAccessibility="no" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
