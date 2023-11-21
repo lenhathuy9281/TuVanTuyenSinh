@@ -58,6 +58,13 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+
+        with(binding) {
+            fabChatBot.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_home_to_navigation_chat)
+            }
+        }
     }
     private fun initCarousel() {
         val imageList = listOf(

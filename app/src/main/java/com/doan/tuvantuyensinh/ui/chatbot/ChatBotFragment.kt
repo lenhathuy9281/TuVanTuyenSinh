@@ -6,6 +6,7 @@ import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.doan.tuvantuyensinh.R
 import com.doan.tuvantuyensinh.databinding.FragmentChatbotBinding
+import com.doan.tuvantuyensinh.utils.remote.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
+
 
 @AndroidEntryPoint
 class ChatBotFragment: Fragment() {
@@ -44,14 +48,35 @@ class ChatBotFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        with(viewModel) {
+            sendMp3.observe(viewLifecycleOwner) {
+                it?.let { result ->
+                    Log.d("resultChatBot", result.toString())
+                    when (result.status) {
+                        Resource.Status.SUCCESS -> {
+
+                        }
+                        Resource.Status.LOADING -> {
+                        }
+                        Resource.Status.ERROR -> {
+                        }
+                    }
+                }
+            }
+        }
+
         with(binding) {
             iconMic.setOnClickListener {
                 if (!isRecording) {
                     startRecording()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        stopRecording()
-                        viewModel.uploadMp3(fileName!!)
-                    }, 5000) // Stop recording after 5 seconds
+                    iconMic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off))
+//                    Handler(Looper.getMainLooper()).postDelayed({
+//
+//                    }, 5000) // Stop recording after 5 seconds
+                } else {
+                    stopRecording()
+                    iconMic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic))
+                    viewModel.uploadMp3(fileName!!)
                 }
             }
         }
@@ -64,8 +89,8 @@ class ChatBotFragment: Fragment() {
             mediaRecorder = MediaRecorder()
             mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             mediaRecorder.setOutputFile(fileName)
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
 
             try {
                 mediaRecorder.prepare()
@@ -74,15 +99,20 @@ class ChatBotFragment: Fragment() {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(
+                    Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ), 1
+            )
         }
     }
 
     private fun stopRecording() {
-        if (isRecording) {
-            mediaRecorder.stop()
-            mediaRecorder.release()
-            isRecording = false
-        }
+        mediaRecorder.stop()
+        mediaRecorder.reset();
+        mediaRecorder.release()
+        isRecording = false
     }
 
     private fun checkPermissions(): Boolean {

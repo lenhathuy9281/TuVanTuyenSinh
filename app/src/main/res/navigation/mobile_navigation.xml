@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_undevelopFragment"
             app:destination="@id/undevelopFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_chat"
+            app:destination="@id/navigation_chat" />
     </fragment>
 
     <fragment
@@ -44,6 +47,12 @@
         android:id="@+id/newsDetailFragment"
         android:name="com.doan.tuvantuyensinh.ui.news.NewsDetailFragment"
         android:label="News Detail Fragment">
+    </fragment>
+
+    <fragment android:id="@+id/navigation_chat"
+        android:name="com.doan.tuvantuyensinh.ui.chatbot.ChatBotFragment"
+        android:label="Chat Fragment">
+
     </fragment>
 
     <fragment
