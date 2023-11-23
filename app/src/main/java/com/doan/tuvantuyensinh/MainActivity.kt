@@ -5,8 +5,6 @@ import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.doan.tuvantuyensinh.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.newsDetailFragment) {
-                binding.navView.visibility = View.GONE
-            } else {
+            if(destination.id == R.id.news_detail_fragment || destination.id == R.id.navigation_profile || destination.id == R.id.navigation_home) {
                 binding.navView.visibility = View.VISIBLE
+            } else {
+                binding.navView.visibility = View.GONE
             }
         }
         // Passing each menu ID as a set of Ids because each

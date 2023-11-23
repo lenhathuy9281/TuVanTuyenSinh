@@ -17,7 +17,7 @@ class UnDevelopFragment: Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val homeViewModel: UndevelopViewModel by viewModels()
+    private val viewModel: UndevelopViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +26,15 @@ class UnDevelopFragment: Fragment() {
     ): View {
 
         _binding = FragmentUndevelopBinding.inflate(inflater, container, false)
+
+        viewModel.apply {
+            onClickBack = {
+                requireActivity().onBackPressed()
+            }
+        }
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         val root: View = binding.root
 
         return root

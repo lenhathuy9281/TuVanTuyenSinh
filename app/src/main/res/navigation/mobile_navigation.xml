@@ -19,10 +19,13 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_chat"
             app:destination="@id/navigation_chat" />
+        <action
+            android:id="@+id/action_navigation_home_to_more_function_fragment"
+            app:destination="@id/more_function_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_profile"
         android:name="com.doan.tuvantuyensinh.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
@@ -34,7 +37,7 @@
         tools:layout="@layout/fragment_news" >
         <action
             android:id="@+id/action_navigation_news_to_newsDetailFragment"
-            app:destination="@id/newsDetailFragment" />
+            app:destination="@id/news_detail_fragment" />
     </fragment>
 
     <fragment
@@ -44,7 +47,7 @@
         tools:layout="@layout/fragment_news" />
 
     <fragment
-        android:id="@+id/newsDetailFragment"
+        android:id="@+id/news_detail_fragment"
         android:name="com.doan.tuvantuyensinh.ui.news.NewsDetailFragment"
         android:label="News Detail Fragment">
     </fragment>
@@ -59,5 +62,11 @@
         android:id="@+id/undevelopFragment"
         android:name="com.doan.tuvantuyensinh.ui.underdevelop.UnDevelopFragment"
         android:label="Undevelop Fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/more_function_fragment"
+        android:name="com.doan.tuvantuyensinh.ui.more.MoreFunctionFragment"
+        android:label="More Function Fragment">
     </fragment>
 </navigation>

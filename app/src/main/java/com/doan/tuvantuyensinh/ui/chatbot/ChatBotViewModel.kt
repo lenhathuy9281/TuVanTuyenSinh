@@ -42,16 +42,16 @@ class ChatBotViewModel @Inject constructor(
         viewModelScope.launch(dispatchers.io) {
             chatBotRepository.uploadMp3(fileName)
         }
-        _sendMp3 = flow {
-            chatBotRepository.uploadMp3(fileName)
-            emit(Resource.loading())
-            val response = chatBotRepository.uploadMp3(fileName)
-            if (response.isSuccessful()) {
-                emit(Resource.success(response.data))
-            } else {
-                emit(Resource.error(response.error ?: NetworkException()))
-            }
-        }.flowOn(dispatchers.io)
+//        _sendMp3 = flow {
+//            chatBotRepository.uploadMp3(fileName)
+//            emit(Resource.loading())
+//            val response = chatBotRepository.uploadMp3(fileName)
+//            if (response.isSuccessful()) {
+//                emit(Resource.success(response.data))
+//            } else {
+//                emit(Resource.error(response.error ?: NetworkException()))
+//            }
+//        }.flowOn(dispatchers.io)
     }
 
 }

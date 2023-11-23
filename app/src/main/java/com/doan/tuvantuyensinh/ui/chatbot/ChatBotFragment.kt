@@ -29,7 +29,7 @@ class ChatBotFragment: Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val viewModel: ChatBotViewModel by viewModels()
-    private lateinit var mediaRecorder: MediaRecorder
+    private var mediaRecorder: MediaRecorder? = null
     private var isRecording = false
     private var fileName: String? = ""
 
@@ -87,14 +87,14 @@ class ChatBotFragment: Fragment() {
         fileName = "${externalCacheDir.absolutePath}/audiorecordtest.mp3"
         if (checkPermissions()) {
             mediaRecorder = MediaRecorder()
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            mediaRecorder.setOutputFile(fileName)
+            mediaRecorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
+            mediaRecorder?.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+            mediaRecorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            mediaRecorder?.setOutputFile(fileName)
 
             try {
-                mediaRecorder.prepare()
-                mediaRecorder.start()
+                mediaRecorder?.prepare()
+                mediaRecorder?.start()
                 isRecording = true
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -109,9 +109,9 @@ class ChatBotFragment: Fragment() {
     }
 
     private fun stopRecording() {
-        mediaRecorder.stop()
-        mediaRecorder.reset();
-        mediaRecorder.release()
+        mediaRecorder?.stop()
+        mediaRecorder?.reset();
+        mediaRecorder?.release()
         isRecording = false
     }
 

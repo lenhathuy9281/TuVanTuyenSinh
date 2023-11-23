@@ -91,8 +91,8 @@ class HomeFragment : Fragment() {
         val gridFunctionAdapter = GridFunctionAdapter(getListFunction()).apply {
             onClickFunction = {
                 when(it.functionId) {
-                    0 -> {
-
+                    getListFunction().size -1 -> {
+                        findNavController().navigate(R.id.action_navigation_home_to_more_function_fragment)
                     }
                     else -> {
                         findNavController().navigate(R.id.action_navigation_home_to_undevelopFragment)
