@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.news_detail_fragment || destination.id == R.id.navigation_profile || destination.id == R.id.navigation_home) {
+            if(destination.id == R.id.navigation_news || destination.id == R.id.navigation_profile || destination.id == R.id.navigation_home) {
                 binding.navView.visibility = View.VISIBLE
             } else {
                 binding.navView.visibility = View.GONE

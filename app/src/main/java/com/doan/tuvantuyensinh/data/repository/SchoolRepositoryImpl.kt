@@ -1,6 +1,7 @@
 package com.doan.tuvantuyensinh.data.repository
 
 import com.doan.tuvantuyensinh.data.remote.SchoolService
+import com.doan.tuvantuyensinh.domain.SchoolResponse
 import com.doan.tuvantuyensinh.utils.remote.Resource
 import javax.inject.Inject
 

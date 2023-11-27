@@ -67,10 +67,12 @@ class HomeFragment : Fragment() {
         }
     }
     private fun initCarousel() {
+
         val imageList = listOf(
             getString(R.string.image1),
             getString(R.string.image2),
-            getString(R.string.image3)
+            getString(R.string.image3),
+            getString(R.string.image_banner)
         )
         val carouselAdapter = CarouselAdapter(imageList, true)
         binding.carouselPager.adapter = carouselAdapter
@@ -78,11 +80,12 @@ class HomeFragment : Fragment() {
 
     private fun getListFunction(): List<FunctionData> {
         return listOf(
-            FunctionData("Tư vấn học bổng", "",0),
-            FunctionData("Tư vấn du học", "R.drawable.ic_study_abroad", 1),
-            FunctionData("Tư vấn việc làm", "R.drawable.ic_job", 2),
-            FunctionData("Tư vấn học phí", "R.drawable.ic_scholarship", 3),
-            FunctionData("Tư vấn tự động", "R.drawable.ic_scholarship", 4),
+            FunctionData("Xem thông tin trường", "ic_truong_hoc",0),
+            FunctionData("Cơ hội việc làm", "ic_job", 1),
+            FunctionData("Thông tin học phí", "ic_hoc_phi", 2),
+            FunctionData("Thông tin học bổng", "ic_hoc_bong", 3),
+            FunctionData("Thông tin chỉ tiêu", "ic_chi_tieu", 4),
+            FunctionData("Danh sách chức năng", "ic_list_function", 5),
 
         )
     }

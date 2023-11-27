@@ -1,8 +1,12 @@
 package com.doan.tuvantuyensinh.di
 
 import com.doan.tuvantuyensinh.data.remote.ChatBotService
+import com.doan.tuvantuyensinh.data.remote.JobService
+import com.doan.tuvantuyensinh.data.remote.ScholarService
 import com.google.gson.Gson
 import com.doan.tuvantuyensinh.data.remote.SchoolService
+import com.doan.tuvantuyensinh.data.remote.TargetService
+import com.doan.tuvantuyensinh.data.remote.TuitionService
 import com.doan.tuvantuyensinh.utils.remote.CallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -62,4 +66,20 @@ object RemoteModule {
     @Singleton
     @Provides
     fun provideChatBotService(retrofit: Retrofit) = retrofit.create(ChatBotService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideJobService(retrofit: Retrofit) = retrofit.create(JobService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTargetService(retrofit: Retrofit) = retrofit.create(TargetService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideScholarService(retrofit: Retrofit) = retrofit.create(ScholarService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideTuitionsService(retrofit: Retrofit) = retrofit.create(TuitionService::class.java)
 }

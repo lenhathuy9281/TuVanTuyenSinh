@@ -3,7 +3,9 @@ package com.doan.tuvantuyensinh.ui.home.function
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.doan.tuvantuyensinh.R
 import com.doan.tuvantuyensinh.databinding.ItemFunctionHomeBinding
+import com.doan.tuvantuyensinh.utils.getDrawableFromString
 
 
 class GridFunctionAdapter(recyclerDataArrayList: List<FunctionData>) :
@@ -51,6 +53,13 @@ class GridFunctionAdapter(recyclerDataArrayList: List<FunctionData>) :
         fun bind(item: FunctionData) {
             with(binding) {
                 tvFunctionName.text = item.title
+                val drawable = root.context.getDrawableFromString(item.image)
+                if (drawable != null) {
+                    imvFunctionIcon.setImageDrawable(drawable)
+                } else {
+                    imvFunctionIcon.setImageResource(R.drawable.ic_truong_hoc)
+                }
+//                imvFunctionIcon.setImageDrawable(root.context.getDrawableFromString(item.image))
             }
         }
     }

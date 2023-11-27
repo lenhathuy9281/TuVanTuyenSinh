@@ -6,7 +6,8 @@
 
     <string name="function_home">Danh sách chức năng</string>
 
-    <string name="image1" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/35/84/47/b5968aabcf76d21b74c9afe34664d6c1.png.webp</string>
-    <string name="image2" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/e5/06/65/978bf71239687f0c2ceaa2ff66f29586.png.webp</string>
-    <string name="image3" translatable="false">https://salt.tikicdn.com/cache/w1080/ts/banner/79/ee/90/96195bbb954378d0d26f0a732a3c66a8.png.webp</string>
+    <string name="image1" translatable="false">https://cdn.discordapp.com/attachments/761248969699098652/1178709735478931596/ptit_2.jpg?ex=657721fc&amp;is=6564acfc&amp;hm=adafa2ab418b92b705f51917d29648b150d3384ddaf69c4207c12c79d86283ea&amp;</string>
+    <string name="image2" translatable="false">https://cdn.discordapp.com/attachments/761248969699098652/1178709749404016660/ptit_3.jpg?ex=657721ff&amp;is=6564acff&amp;hm=b06c0a494543404fc8c122234c5427139e431a4b62628273109550ca7ddb01cb&amp;</string>
+    <string name="image3" translatable="false">https://cdn.discordapp.com/attachments/761248969699098652/1178709758681825351/ptit-4.jpg?ex=65772201&amp;is=6564ad01&amp;hm=323f826ebc14fe0a400b502cfd59cb3bdeb1ccd61a29917a76658e2d3c0420b9&amp;</string>
+    <string name="image_banner" translatable="false">https://cdn.discordapp.com/attachments/761248969699098652/1178703860781564005/ptit.jpg?ex=65771c83&amp;is=6564a783&amp;hm=0875a2887b055fbc6989fd21e4a4ddf71d4e8b9dcf8b91dbeb417a1923665ac6&amp;</string>
 </resources>

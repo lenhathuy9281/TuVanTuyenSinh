@@ -96,6 +96,9 @@ dependencies {
     kapt ("androidx.room:room-compiler:$room_version")
     implementation ("androidx.room:room-paging:$room_version")
 
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
     val paging_version = "3.2.1"
     implementation ("androidx.paging:paging-runtime-ktx:$paging_version")
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
