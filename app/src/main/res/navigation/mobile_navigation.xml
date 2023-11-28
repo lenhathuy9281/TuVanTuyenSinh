@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_navigation_home_to_more_function_fragment"
             app:destination="@id/more_function_fragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_school_info"
+            app:destination="@id/navigation_school_info" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_job"
+            app:destination="@id/navigation_job" />
     </fragment>
 
     <fragment
@@ -44,7 +50,7 @@
         android:id="@+id/navigation_school_info"
         android:name="com.doan.tuvantuyensinh.ui.school.SchoolInfoFragment"
         android:label="@string/title_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_school_info" />
 
     <fragment
         android:id="@+id/news_detail_fragment"
@@ -68,5 +74,13 @@
         android:id="@+id/more_function_fragment"
         android:name="com.doan.tuvantuyensinh.ui.more.MoreFunctionFragment"
         android:label="More Function Fragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_job"
+        android:name="com.doan.tuvantuyensinh.ui.job.JobFragment"
+        android:label="@string/title_job"
+        tools:layout="@layout/fragment_job" >
+
     </fragment>
 </navigation>

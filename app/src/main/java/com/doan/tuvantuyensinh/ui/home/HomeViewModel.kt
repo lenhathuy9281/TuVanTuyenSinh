@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.doan.tuvantuyensinh.data.repository.SchoolRepository
+import com.doan.tuvantuyensinh.domain.SchoolResponse
 import com.doan.tuvantuyensinh.utils.AppDispatchers
 import com.doan.tuvantuyensinh.utils.remote.NetworkException
 import com.doan.tuvantuyensinh.utils.remote.Resource
@@ -21,22 +22,6 @@ class HomeViewModel @Inject constructor(
     private val dispatchers: AppDispatchers
 ): ViewModel() {
 
-    init {
-        getSchools()
-    }
-
-    private var _school: Flow<Resource<String?>> = flow {
-        emit(Resource.loading())
-        val response = schoolRepository.getSchools()
-        if (response.isSuccessful()){
-            emit(Resource.success(response.data!!.school))
-        } else {
-            emit(Resource.error(response.error ?: NetworkException()))
-        }
-    }
-
-    val school: LiveData<Resource<String?>> get() = _school.asLiveData()
-
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
@@ -52,16 +37,4 @@ class HomeViewModel @Inject constructor(
 //        Timber.d("password: $password")
 //    }
 
-    fun getSchools(){
-        _school = flow {
-            emit(Resource.loading())
-            val response = schoolRepository.getSchools()
-            if (response.isSuccessful()){
-                emit(Resource.success(response.data!!.school))
-            } else {
-                emit(Resource.error(response.error ?: NetworkException()))
-            }
-        }.flowOn(dispatchers.io)
-
-    }
 }

@@ -1,11 +1,10 @@
-package com.doan.tuvantuyensinh.ui.school
+package com.doan.tuvantuyensinh.ui.job
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.doan.tuvantuyensinh.data.repository.SchoolRepository
-import com.doan.tuvantuyensinh.domain.SchoolResponse
+import com.doan.tuvantuyensinh.data.repository.JobRepository
+import com.doan.tuvantuyensinh.domain.JobResponse
 import com.doan.tuvantuyensinh.utils.AppDispatchers
 import com.doan.tuvantuyensinh.utils.remote.NetworkException
 import com.doan.tuvantuyensinh.utils.remote.Resource
@@ -16,38 +15,35 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 @HiltViewModel
-class SchoolInfoViewModel @Inject constructor(
-    private val schoolRepository: SchoolRepository,
+class JobViewModel @Inject constructor(
+    private val jobRepository: JobRepository,
     private val dispatchers: AppDispatchers
-)  : ViewModel() {
+) : ViewModel() {
 
     init {
-        getSchools()
+        getJobs()
     }
 
-    private var _school: Flow<Resource<SchoolResponse?>> = flow {
+    private var _job: Flow<Resource<JobResponse?>> = flow {
         emit(Resource.loading())
-        val response = schoolRepository.getSchools()
+        val response = jobRepository.getJobs()
         if (response.isSuccessful()){
-            emit(Resource.success(response.data))
+            emit(Resource.success(response.data!!))
         } else {
             emit(Resource.error(response.error ?: NetworkException()))
         }
     }.flowOn(dispatchers.io)
 
-    val school: LiveData<Resource<SchoolResponse?>> get() = _school.asLiveData()
-
-    fun getSchools(){
-        _school = flow {
+    val job: LiveData<Resource<JobResponse?>> get() = _job.asLiveData()
+    fun getJobs(){
+        _job = flow {
             emit(Resource.loading())
-            val response = schoolRepository.getSchools()
+            val response = jobRepository.getJobs()
             if (response.isSuccessful()){
                 emit(Resource.success(response.data!!))
             } else {
                 emit(Resource.error(response.error ?: NetworkException()))
             }
         }.flowOn(dispatchers.io)
-
     }
-
 }

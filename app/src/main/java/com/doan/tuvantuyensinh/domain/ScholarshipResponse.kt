@@ -2,12 +2,12 @@ package com.doan.tuvantuyensinh.domain
 
 import com.google.gson.annotations.SerializedName
 
-class ScholarshipResponse(@SerializedName("scholarship") val scholarship: List<Scholarship>?) {
+class ScholarshipResponse(@SerializedName("scholarships") val scholarship: List<Scholarship>?) {
 }
 
 class Scholarship(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("image") val image: String
+    @SerializedName("id") val id: String?,
+    @SerializedName("loaiHb") val loaiHb: String?,
+    @SerializedName("diemYc") val diemYc: String?,
+    @SerializedName("hanhKiemYc") val hanhKiemYc: String?
 )

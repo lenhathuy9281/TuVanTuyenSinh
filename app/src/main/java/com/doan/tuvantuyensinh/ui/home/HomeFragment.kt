@@ -44,21 +44,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initCarousel()
         initGridFunction()
-        homeViewModel.school.observe(viewLifecycleOwner) {
-            it?.let { result ->
-                Log.d("resultSchool", result.toString())
-                when (result.status) {
-                    Resource.Status.SUCCESS -> {
-
-                    }
-                    Resource.Status.LOADING -> {
-                    }
-                    Resource.Status.ERROR -> {
-                    }
-                }
-            }
-        }
-
 
         with(binding) {
             fabChatBot.setOnClickListener {
@@ -81,7 +66,7 @@ class HomeFragment : Fragment() {
     private fun getListFunction(): List<FunctionData> {
         return listOf(
             FunctionData("Xem thông tin trường", "ic_truong_hoc",0),
-            FunctionData("Cơ hội việc làm", "ic_job", 1),
+            FunctionData("Thông tin nghề nghiệp liên quan", "ic_job", 1),
             FunctionData("Thông tin học phí", "ic_hoc_phi", 2),
             FunctionData("Thông tin học bổng", "ic_hoc_bong", 3),
             FunctionData("Thông tin chỉ tiêu", "ic_chi_tieu", 4),
@@ -94,6 +79,12 @@ class HomeFragment : Fragment() {
         val gridFunctionAdapter = GridFunctionAdapter(getListFunction()).apply {
             onClickFunction = {
                 when(it.functionId) {
+                    0 -> {
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_school_info)
+                    }
+                    1 -> {
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_job)
+                    }
                     getListFunction().size -1 -> {
                         findNavController().navigate(R.id.action_navigation_home_to_more_function_fragment)
                     }

@@ -3,10 +3,10 @@ package com.doan.tuvantuyensinh.domain
 import com.google.gson.annotations.SerializedName
 
 data class ItemNews(
-    @SerializedName("id") val id: Int?,
+    @SerializedName("id") val id: String?,
     @SerializedName("title") val title: String?,
     @SerializedName("image") val image: String?,
-    @SerializedName("content") val content: String?,
-    @SerializedName("created_at") val createdAt: String?,
-    @SerializedName("summarize") val summarize: String?
+    @SerializedName("fullDescription") val fullDescription: String?,
+    @SerializedName("time") val time: String?,
+    @SerializedName("shortDescription") val shortDescription: String?
 )

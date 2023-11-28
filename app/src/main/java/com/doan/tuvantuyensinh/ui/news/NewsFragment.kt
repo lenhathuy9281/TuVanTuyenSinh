@@ -61,7 +61,8 @@ class NewsFragment : Fragment() {
                 "News Title 1",
                 "November 1, 2023",
                 "This is a short description of news 1.",
-                "This is the full description of news 1."
+                "This is the full description of news 1.",
+                "This is the short description of news 1."
             )
         )
 
@@ -71,7 +72,8 @@ class NewsFragment : Fragment() {
                 "News Title 1",
                 "November 1, 2023",
                 "This is a short description of news 1.",
-                "This is the full description of news 1."
+                "This is the full description of news 1.",
+                "This is the short description of news 2."
             )
         )
 
@@ -81,7 +83,8 @@ class NewsFragment : Fragment() {
                 "News Title 1",
                 "November 1, 2023",
                 "This is a short description of news 1.",
-                "This is the full description of news 1."
+                "This is the full description of news 1.",
+                "This is the short description of news 3."
             )
         )
 
@@ -91,7 +94,8 @@ class NewsFragment : Fragment() {
                 "News Title 1",
                 "November 1, 2023",
                 "This is a short description of news 1.",
-                "This is the full description of news 1."
+                "This is the full description of news 1.",
+                "This is the short description of news 4."
             )
         )
 
