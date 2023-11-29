@@ -5,6 +5,6 @@ import com.doan.tuvantuyensinh.utils.remote.Resource
 import retrofit2.http.GET
 
 interface ScholarService {
-    @GET("scholar")
+    @GET("scholarship")
     suspend fun getScholars(): Resource<ScholarshipResponse>
 }

@@ -28,6 +28,15 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_job"
             app:destination="@id/navigation_job" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_scholarship"
+            app:destination="@id/navigation_scholarship" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_tuition"
+            app:destination="@id/navigation_tuition" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_target"
+            app:destination="@id/navigation_target" />
     </fragment>
 
     <fragment
@@ -83,4 +92,22 @@
         tools:layout="@layout/fragment_job" >
 
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_scholarship"
+        android:name="com.doan.tuvantuyensinh.ui.scholarship.ScholarshipFragment"
+        android:label="@string/title_scholarship"
+        tools:layout="@layout/fragment_scholarship" />
+
+    <fragment
+        android:id="@+id/navigation_tuition"
+        android:name="com.doan.tuvantuyensinh.ui.tuition.TuitionFragment"
+        android:label="@string/title_tuition"
+        tools:layout="@layout/fragment_tuition" />
+
+    <fragment
+        android:id="@+id/navigation_target"
+        android:name="com.doan.tuvantuyensinh.ui.target.TargetFragment"
+        android:label="@string/title_target"
+        tools:layout="@layout/fragment_target" />
 </navigation>

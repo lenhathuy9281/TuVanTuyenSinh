@@ -4,6 +4,9 @@
     <string name="title_profile">Profile</string>
     <string name="title_news">News</string>
     <string name="title_job">Thông tin nghề nghiệp</string>
+    <string name="title_scholarship">Thông tin học bổng</string>
+    <string name="title_tuition">Thông tin học phí</string>
+    <string name="title_target">Thông tin chỉ tiêu</string>
 
     <string name="function_home">Danh sách chức năng</string>
 

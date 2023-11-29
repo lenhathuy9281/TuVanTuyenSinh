@@ -1,0 +1,42 @@
+<!-- res/layout/item_scholarship.xml -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="scholarship"
+            type="com.doan.tuvantuyensinh.domain.Scholarship" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/scholarshipNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="@{scholarship.loaiHb}" />
+
+        <TextView
+            android:id="@+id/scholarshipCriteriaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:text="@{`Criteria: ` + scholarship.diemYc}" />
+
+        <TextView
+            android:id="@+id/scholarshipHanhKiemTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:text="@{`Hạnh kiểm yêu cầu: ` + scholarship.hanhKiemYc}" />
+    </LinearLayout>
+</layout>

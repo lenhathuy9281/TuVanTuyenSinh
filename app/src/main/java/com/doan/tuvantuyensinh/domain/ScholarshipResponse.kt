@@ -2,7 +2,7 @@ package com.doan.tuvantuyensinh.domain
 
 import com.google.gson.annotations.SerializedName
 
-class ScholarshipResponse(@SerializedName("scholarships") val scholarship: List<Scholarship>?) {
+class ScholarshipResponse(@SerializedName("scholarships") val scholarships: List<Scholarship>?) {
 }
 
 class Scholarship(

@@ -1,4 +1,4 @@
-package com.doan.tuvantuyensinh.ui.scholarship
+package com.doan.tuvantuyensinh.ui.tuition
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,27 +7,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.doan.tuvantuyensinh.databinding.FragmentScholarshipBinding
-import com.doan.tuvantuyensinh.ui.scholarship.ScholarshipViewModel
+import com.doan.tuvantuyensinh.databinding.FragmentTuitionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ScholarshipFragment: Fragment() {
-
-    private var _binding: FragmentScholarshipBinding? = null
-
+class TuitionFragment : Fragment() {
+    private var _binding: FragmentTuitionBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ScholarshipViewModel by viewModels()
+    private val viewModel: TuitionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentScholarshipBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        _binding = FragmentTuitionBinding.inflate(layoutInflater, container, false)
+
+
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -35,14 +34,17 @@ class ScholarshipFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(viewModel) {
-            scholarship.observe(viewLifecycleOwner) {
-                if (it.isSuccessful()) {
-                    binding.scholarshipRecyclerView.apply {
-                        adapter = ScholarshipAdapter(it.data?.scholarships ?: emptyList())
-                        layoutManager = LinearLayoutManager(requireContext())
-                    }
+            tuition.observe(viewLifecycleOwner) {
+                it?.let {
+                   if (it.isSuccessful()) {
+                       with(binding) {
+                           tuitionRecyclerView.apply {
+                               adapter = TuitionAdapter(it.data?.tuition ?: emptyList())
+                               layoutManager = LinearLayoutManager(requireContext())
+                           }
+                       }
+                   }
                 }
-
             }
         }
     }

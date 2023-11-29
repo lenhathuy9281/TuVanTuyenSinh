@@ -2,12 +2,12 @@ package com.doan.tuvantuyensinh.domain
 
 import com.google.gson.annotations.SerializedName
 
-class TargetResponse(@SerializedName("targets") val targets: List<TargetEntity>?) {
+class TargetResponse(@SerializedName("targets") val targets: List<Target>?) {
 }
 
-class TargetEntity(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("image") val image: String
+class Target(
+    @SerializedName("id") val id: String?,
+    @SerializedName("nam") val nam: String?,
+    @SerializedName("soLuong") val soLuong: String?,
+    @SerializedName("phuongThuc") val phuongThuc: String?
 )

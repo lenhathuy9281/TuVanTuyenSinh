@@ -85,6 +85,15 @@ class HomeFragment : Fragment() {
                     1 -> {
                         findNavController().navigate(R.id.action_navigation_home_to_navigation_job)
                     }
+                    2-> {
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_tuition)
+                    }
+                    3 -> {
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_scholarship)
+                    }
+                    4 -> {
+                        findNavController().navigate(R.id.action_navigation_home_to_navigation_target)
+                    }
                     getListFunction().size -1 -> {
                         findNavController().navigate(R.id.action_navigation_home_to_more_function_fragment)
                     }

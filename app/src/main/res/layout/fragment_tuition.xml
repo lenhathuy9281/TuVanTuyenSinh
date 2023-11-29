@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.doan.tuvantuyensinh.ui.scholarship.ScholarshipViewModel" />
+            type="com.doan.tuvantuyensinh.ui.tuition.TuitionViewModel" />
     </data>
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/scholarshipRecyclerView"
+            android:id="@+id/tuitionRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp" />

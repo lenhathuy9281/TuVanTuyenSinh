@@ -1,4 +1,4 @@
-package com.doan.tuvantuyensinh.ui.scholarship
+package com.doan.tuvantuyensinh.ui.target
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,25 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.doan.tuvantuyensinh.databinding.FragmentScholarshipBinding
-import com.doan.tuvantuyensinh.ui.scholarship.ScholarshipViewModel
+import com.doan.tuvantuyensinh.databinding.FragmentTargetBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ScholarshipFragment: Fragment() {
+class TargetFragment: Fragment() {
 
-    private var _binding: FragmentScholarshipBinding? = null
-
+    private var _binding: FragmentTargetBinding? = null
     private val binding get() = _binding!!
-
-    private val viewModel: ScholarshipViewModel by viewModels()
+    private val viewModel: TargetViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentScholarshipBinding.inflate(inflater, container, false)
+        _binding  = FragmentTargetBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -35,22 +32,22 @@ class ScholarshipFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(viewModel) {
-            scholarship.observe(viewLifecycleOwner) {
+            targets.observe(viewLifecycleOwner) {
                 if (it.isSuccessful()) {
-                    binding.scholarshipRecyclerView.apply {
-                        adapter = ScholarshipAdapter(it.data?.scholarships ?: emptyList())
-                        layoutManager = LinearLayoutManager(requireContext())
+                    with(binding) {
+                        targetRecyclerView.apply {
+                            adapter = TargetAdapter(it.data?.targets ?: emptyList())
+                            layoutManager = LinearLayoutManager(requireContext())
+                        }
+
                     }
                 }
-
             }
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
 
         _binding = null
     }
-
 }
