@@ -3,6 +3,7 @@ package com.doan.tuvantuyensinh.di
 import com.doan.tuvantuyensinh.data.remote.ChatBotService
 import com.doan.tuvantuyensinh.data.remote.JobService
 import com.doan.tuvantuyensinh.data.remote.MajorService
+import com.doan.tuvantuyensinh.data.remote.NewsService
 import com.doan.tuvantuyensinh.data.remote.ScholarService
 import com.google.gson.Gson
 import com.doan.tuvantuyensinh.data.remote.SchoolService
@@ -87,4 +88,8 @@ object RemoteModule {
     @Singleton
     @Provides
     fun provideMajorService(retrofit: Retrofit) = retrofit.create(MajorService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideNewsService(retrofit: Retrofit) = retrofit.create(NewsService::class.java)
 }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.doan.tuvantuyensinh.R
 import com.doan.tuvantuyensinh.databinding.FragmentNewsBinding
-import com.doan.tuvantuyensinh.domain.ItemNews
+import com.doan.tuvantuyensinh.domain.News
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +22,7 @@ class NewsFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val NewsViewModel: NewsViewModel by viewModels()
+    private val viewModel: NewsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,70 +37,25 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initNewsList()
 
-        val newsAdapter = NewsAdapter(initNewsList()) { newsItem ->
-            findNavController().navigate(R.id.action_navigation_news_to_newsDetailFragment, Bundle().apply {
-                putString("newsItem", Gson().toJson(newsItem))
-            })
+        with(viewModel) {
+            news.observe(viewLifecycleOwner) {
+                if (it.isSuccessful()) {
+                    val newsAdapter = it.data?.news?.let { it1 ->
+                        NewsAdapter(it1) { newsItem ->
+                            findNavController().navigate(R.id.action_navigation_news_to_newsDetailFragment, Bundle().apply {
+                                putString("newsItem", newsItem.id)
+                            })
+                        }
+                    }
+
+                    with(binding) {
+                        rcvNews.layoutManager = LinearLayoutManager(requireContext())
+                        rcvNews.adapter = newsAdapter
+                    }
+                }
+            }
         }
-
-        with(binding) {
-            rcvNews.layoutManager = LinearLayoutManager(requireContext())
-            rcvNews.adapter = newsAdapter
-        }
-
-
-    }
-    private fun initNewsList(): MutableList<ItemNews> {
-        val newsList = mutableListOf<ItemNews>()
-        // Add sample news items
-        newsList.add(
-            ItemNews(
-                "",
-                "News Title 1",
-                "November 1, 2023",
-                "This is a short description of news 1.",
-                "This is the full description of news 1.",
-                "This is the short description of news 1."
-            )
-        )
-
-        newsList.add(
-            ItemNews(
-                "",
-                "News Title 1",
-                "November 1, 2023",
-                "This is a short description of news 1.",
-                "This is the full description of news 1.",
-                "This is the short description of news 2."
-            )
-        )
-
-        newsList.add(
-            ItemNews(
-                "",
-                "News Title 1",
-                "November 1, 2023",
-                "This is a short description of news 1.",
-                "This is the full description of news 1.",
-                "This is the short description of news 3."
-            )
-        )
-
-        newsList.add(
-            ItemNews(
-                "",
-                "News Title 1",
-                "November 1, 2023",
-                "This is a short description of news 1.",
-                "This is the full description of news 1.",
-                "This is the short description of news 4."
-            )
-        )
-
-        return newsList
-        // Add more news items as needed
     }
 
     override fun onDestroyView() {

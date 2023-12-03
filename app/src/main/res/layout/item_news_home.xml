@@ -26,7 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textColor="#F02F2F"
+            android:textAllCaps="true"/>
 
         <TextView
             android:id="@+id/newsTime"
@@ -40,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 </layout>

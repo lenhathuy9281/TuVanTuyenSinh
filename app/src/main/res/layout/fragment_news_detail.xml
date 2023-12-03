@@ -25,6 +25,8 @@
                 android:id="@+id/newsDetailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#F02F2F"
+                android:textAllCaps="true"
                 android:textSize="20sp" />
 
             <TextView
@@ -37,7 +39,8 @@
                 android:id="@+id/newsDetailFullDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </ScrollView>

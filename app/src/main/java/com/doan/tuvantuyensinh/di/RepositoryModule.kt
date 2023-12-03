@@ -6,6 +6,8 @@ import com.doan.tuvantuyensinh.data.repository.JobRepository
 import com.doan.tuvantuyensinh.data.repository.JobRepositoryImpl
 import com.doan.tuvantuyensinh.data.repository.MajorRepository
 import com.doan.tuvantuyensinh.data.repository.MajorRepositoryImpl
+import com.doan.tuvantuyensinh.data.repository.NewsRepository
+import com.doan.tuvantuyensinh.data.repository.NewsRepositoryImpl
 import com.doan.tuvantuyensinh.data.repository.ScholarshipRepository
 import com.doan.tuvantuyensinh.data.repository.ScholarshipRepositoryImpl
 import com.doan.tuvantuyensinh.data.repository.SchoolRepository
@@ -51,4 +53,8 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindMajorRepository(impl: MajorRepositoryImpl): MajorRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindNewsRepository(impl: NewsRepositoryImpl): NewsRepository
 }

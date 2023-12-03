@@ -2,7 +2,10 @@ package com.doan.tuvantuyensinh.domain
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemNews(
+class NewsResponse(
+    @SerializedName("news") val news: List<News>?
+)
+data class News(
     @SerializedName("id") val id: String?,
     @SerializedName("title") val title: String?,
     @SerializedName("image") val image: String?,
