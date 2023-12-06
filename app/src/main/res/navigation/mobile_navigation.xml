@@ -83,6 +83,27 @@
         android:id="@+id/more_function_fragment"
         android:name="com.doan.tuvantuyensinh.ui.more.MoreFunctionFragment"
         android:label="More Function Fragment">
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_school_info"
+            app:destination="@id/navigation_school_info" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_job"
+            app:destination="@id/navigation_job" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_scholarship"
+            app:destination="@id/navigation_scholarship" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_news"
+            app:destination="@id/navigation_news" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_target"
+            app:destination="@id/navigation_target" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_undevelopFragment"
+            app:destination="@id/undevelopFragment" />
+        <action
+            android:id="@+id/action_more_function_fragment_to_navigation_tuition"
+            app:destination="@id/navigation_tuition" />
     </fragment>
 
     <fragment
