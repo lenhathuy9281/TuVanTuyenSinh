@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +12,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.doan.tuvantuyensinh.R
 import com.doan.tuvantuyensinh.databinding.FragmentChatbotBinding
+import com.doan.tuvantuyensinh.domain.Message
 import com.doan.tuvantuyensinh.utils.remote.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
@@ -32,6 +32,11 @@ class ChatBotFragment: Fragment() {
     private var mediaRecorder: MediaRecorder? = null
     private var isRecording = false
     private var fileName: String? = ""
+
+    private val listMessages: MutableList<Message> = mutableListOf()
+    private val messageAdapter: MessageAdapter by lazy {
+        MessageAdapter(listMessages)
+    }
 
 
     override fun onCreateView(
@@ -54,7 +59,28 @@ class ChatBotFragment: Fragment() {
                     Log.d("resultChatBot", result.toString())
                     when (result.status) {
                         Resource.Status.SUCCESS -> {
+                            result.data?.let { message ->
+                                listMessages.add(Message(message.text, true))
+                                messageAdapter.notifyItemInserted(listMessages.size - 1)
+                                viewModel.getChabotResponse(message.text)
+                            }
+                        }
+                        Resource.Status.LOADING -> {
+                        }
+                        Resource.Status.ERROR -> {
+                        }
+                    }
+                }
+            }
 
+            chatBotResponse.observe(viewLifecycleOwner) {
+                it?.let { result ->
+                    when (result.status) {
+                        Resource.Status.SUCCESS -> {
+                            result.data?.let { message ->
+                                listMessages.add(Message(message.text, false))
+                                messageAdapter.notifyItemInserted(listMessages.size - 1)
+                            }
                         }
                         Resource.Status.LOADING -> {
                         }
@@ -70,13 +96,24 @@ class ChatBotFragment: Fragment() {
                 if (!isRecording) {
                     startRecording()
                     iconMic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off))
-//                    Handler(Looper.getMainLooper()).postDelayed({
-//
-//                    }, 5000) // Stop recording after 5 seconds
                 } else {
                     stopRecording()
                     iconMic.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic))
                     viewModel.uploadMp3(fileName!!)
+                }
+            }
+            recyclerViewChat.apply {
+                adapter = messageAdapter
+
+                layoutManager = LinearLayoutManager(requireContext())
+            }
+
+            iconSend.setOnClickListener {
+                if (!editTextMessage.text.isNullOrBlank()) {
+                    listMessages.add(Message(editTextMessage.text.toString(), true))
+                    messageAdapter.notifyItemInserted(listMessages.size - 1)
+                    viewModel.getChabotResponse(editTextMessage.text.toString())
+                    editTextMessage.text?.clear()
                 }
             }
         }

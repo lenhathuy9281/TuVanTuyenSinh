@@ -1,10 +1,13 @@
 package com.doan.tuvantuyensinh.ui.chatbot
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.doan.tuvantuyensinh.data.repository.ChatBotRepository
+import com.doan.tuvantuyensinh.domain.Message
+import com.doan.tuvantuyensinh.domain.MessageVoice
 import com.doan.tuvantuyensinh.utils.AppDispatchers
 import com.doan.tuvantuyensinh.utils.remote.NetworkException
 import com.doan.tuvantuyensinh.utils.remote.Resource
@@ -20,38 +23,46 @@ class ChatBotViewModel @Inject constructor(
     private val chatBotRepository: ChatBotRepository,
     private val dispatchers: AppDispatchers
 ) : ViewModel() {
-    private var _chatBotResponse: Flow<Resource<String?>> = flow {
-        emit(Resource.loading())
-        val response = chatBotRepository.getChatBotResponse()
-        if (response.isSuccessful()) {
-            emit(Resource.success(response.data))
-        } else {
-            emit(Resource.error(response.error ?: NetworkException()))
-        }
-    }
-    val chatBotResponse: Flow<Resource<String?>> get() = _chatBotResponse
+    private val _chatBotResponse: MutableLiveData<Resource<Message?>> = MutableLiveData()
+    val chatBotResponse: LiveData<Resource<Message?>> get() = _chatBotResponse
 
 
-    private var _sendMp3: Flow<Resource<String?>> = flow {
-        emit(Resource.loading())
-    }
-    val sendMp3: LiveData<Resource<String?>> get() = _sendMp3.asLiveData()
+    private val _sendMp3: MutableLiveData<Resource<MessageVoice?>> = MutableLiveData()
+    val sendMp3: LiveData<Resource<MessageVoice?>> get() = _sendMp3
 
     fun uploadMp3(fileName: String) {
 
         viewModelScope.launch(dispatchers.io) {
-            chatBotRepository.uploadMp3(fileName)
+            viewModelScope.launch(dispatchers.io) {
+                _sendMp3.postValue(Resource.loading())
+                try {
+                    val response = chatBotRepository.uploadMp3(fileName)
+                    if (response.status == Resource.Status.SUCCESS) {
+                        _sendMp3.postValue(Resource.success(response.data))
+                    } else {
+                        _sendMp3.postValue(Resource.error(response.error ?: NetworkException()))
+                    }
+                } catch (e: Exception) {
+                    _sendMp3.postValue(Resource.error(e))
+                }
+            }
         }
-//        _sendMp3 = flow {
-//            chatBotRepository.uploadMp3(fileName)
-//            emit(Resource.loading())
-//            val response = chatBotRepository.uploadMp3(fileName)
-//            if (response.isSuccessful()) {
-//                emit(Resource.success(response.data))
-//            } else {
-//                emit(Resource.error(response.error ?: NetworkException()))
-//            }
-//        }.flowOn(dispatchers.io)
+    }
+
+    fun getChabotResponse(userText: String) {
+        viewModelScope.launch(dispatchers.io) {
+            _chatBotResponse.postValue(Resource.loading())
+            try {
+                val response = chatBotRepository.getChatBotResponse(userText)
+                if (response.status == Resource.Status.SUCCESS) {
+                    _chatBotResponse.postValue(Resource.success(response.data))
+                } else {
+                    _chatBotResponse.postValue(Resource.error(response.error ?: NetworkException()))
+                }
+            } catch (e: Exception) {
+                _chatBotResponse.postValue(Resource.error(e))
+            }
+        }
     }
 
 }

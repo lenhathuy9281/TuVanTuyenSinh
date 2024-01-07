@@ -56,7 +56,9 @@ object RemoteModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl("http://192.168.1.29:5001/")
+//        .baseUrl("http://192.168.1.29:5001/")
+//        .baseUrl("http://192.168.11.82:5001/")
+        .baseUrl("http://192.168.114.3:5001/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(CallAdapterFactory())
         .build()
